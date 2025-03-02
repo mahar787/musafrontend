@@ -24,14 +24,14 @@ const ShopByCollections = async () => {
               {/* ✅ Background Image */}
               <img
                 src={collection.image} // ✅ Cloudinary Image
-                alt={collection.name}
+                alt={collection?.name}
                 className="w-full h-[500px] object-cover rounded-lg transition-transform duration-300 group-hover:scale-102"
               />
 
               {/* ✅ Overlay and Text */}
               <div className="absolute inset-0 flex justify-center items-center ">
                 <h1 className="text-white text-2xl font-semibold">
-                  {collection.name}
+                  {collection?.name}
                 </h1>
               </div>
             </a>
