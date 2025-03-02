@@ -125,7 +125,7 @@ const Page = () => {
                   key={i}
                   className="text-center cursor-pointer hover:bg-gray-200"
                 >
-                  <td className="border border-gray-600 p-2">{item.name}</td>
+                  <td className="border border-gray-600 p-2">{item?.name}</td>
                   <td className="border border-gray-600 p-2">
                     {item.selectedColors.map((color, i) => (
                       <span key={i}>{color},&nbsp;</span>

@@ -28,7 +28,7 @@ const Collections = async () => {
             key={collection._id}
             href={`/products/${collection._id}`}
           >
-            {collection.name}
+            {collection?.name}
           </a>
         );
       })}

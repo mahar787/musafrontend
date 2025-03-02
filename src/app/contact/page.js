@@ -39,7 +39,7 @@ export default function ContactForm() {
           <input
             type="text"
             name="name"
-            value={formData.name}
+            value={formData?.name}
             onChange={handleChange}
             required
             className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"

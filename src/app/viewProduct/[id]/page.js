@@ -38,7 +38,7 @@ const Page = () => {
 
     let cart = JSON.parse(localStorage.getItem("cart")) || []; // Cart ko get karo
 
-    let existingItem = cart.find((item) => item.name === productName);
+    let existingItem = cart.find((item) => item?.name === productName);
 
     if (existingItem) {
       existingItem.quantity += quantity; // Agar item pehle se hai, toh quantity badhao
@@ -94,7 +94,7 @@ const Page = () => {
       };
       addToCart(
         Item.itemId,
-        product.name,
+        product?.name,
         Item.itemPrice,
         Item.quantity,
         Item.selectedSizes,
@@ -179,7 +179,7 @@ const Page = () => {
                 {Array.isArray(product) &&
                   product.length > 0 &&
                   product.map((item) => {
-                    return item.name;
+                    return item?.name;
                   })}
               </h1>
 

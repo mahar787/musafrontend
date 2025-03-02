@@ -207,7 +207,7 @@ const CheckoutPage = () => {
                   className="w-16 h-16 object-cover"
                 />
                 <div>
-                  <p className="font-semibold">{item.name}</p>
+                  <p className="font-semibold">{item?.name}</p>
                   <p className="text-gray-600 text-sm">
                     X {cartItem?.quantity}
                   </p>

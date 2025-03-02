@@ -25,7 +25,7 @@ const Header = () => {
   function removeFromCart(productName) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    cart = cart.filter((item) => item.name !== productName); // Selected item delete kar do
+    cart = cart.filter((item) => item?.name !== productName); // Selected item delete kar do
 
     localStorage.setItem("cart", JSON.stringify(cart));
     displayCart();
@@ -113,7 +113,7 @@ const Header = () => {
                       setIsSearchOpen(false);
                     }}
                   >
-                    {item.name}
+                    {item?.name}
                   </li>
                 ))}
               </ul>
@@ -179,7 +179,7 @@ const Header = () => {
                         className="border-b border-gray-300 transition duration-200"
                       >
                         <td className="px-4 py-2 text-sm font-semibold text-[#333333]">
-                          {item.name}
+                          {item?.name}
                         </td>
                         <td className="px-4 py-2 text-center text-sm font-medium text-[#333333]">
                           {item.price} PKR
@@ -194,7 +194,7 @@ const Header = () => {
                         </td>
                         <td
                           onClick={() => {
-                            removeFromCart(item.name);
+                            removeFromCart(item?.name);
                           }}
                           className="text-center font-semibold text-[#333333]"
                         >

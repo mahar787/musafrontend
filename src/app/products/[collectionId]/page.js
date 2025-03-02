@@ -93,11 +93,11 @@ const ProductsPage = () => {
             >
               <img
                 src={product.images[0].url}
-                alt={product.name}
+                alt={product?.name}
                 className="w-full h-[400px] object-cover"
               />
               <div className="p-4">
-                <h3 className="text-xl font-semibold">{product.name}</h3>
+                <h3 className="text-xl font-semibold">{product?.name}</h3>
                 <p className="text-gray-600 font-semibold text-lg">
                   Rs. {product.price}
                 </p>
