@@ -19,7 +19,7 @@ const Collections = async () => {
       >
         Home
       </Link>
-      {collections.map((collection) => {
+      {collections?.map((collection) => {
         return (
           <a
             className="relative cursor-pointer after:content-[''] after:absolute after:left-0 after:bottom-0
