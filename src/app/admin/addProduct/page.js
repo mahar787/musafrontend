@@ -34,7 +34,6 @@ export default function AddProduct() {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    console.log(data);
     const formData = new FormData();
     if (!data.files) {
       window.alert("Please Select At Least One Image");
@@ -59,7 +58,6 @@ export default function AddProduct() {
         }
       );
       const responseData = await res.json();
-      console.log(responseData);
       reset();
       window.alert(responseData.message);
       setApiResponse(responseData.message);
@@ -101,7 +99,7 @@ export default function AddProduct() {
           required
           type="number"
         />
-        <InputField
+        {/* <InputField
           label="Sizes (Comma Separated)"
           name="sizes"
           register={register}
@@ -114,7 +112,7 @@ export default function AddProduct() {
           register={register}
           errors={errors}
           required
-        />
+        /> */}
         <InputField
           label="Material"
           name="materials"

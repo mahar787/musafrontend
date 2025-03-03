@@ -43,6 +43,7 @@ function ImageUploadFormContent() {
     const data = await res.json();
     setLoading(false);
     setApiResponse(data.message);
+    window.alert("Take Screenshot Of Your Order Id: ", orderId);
   };
 
   return (

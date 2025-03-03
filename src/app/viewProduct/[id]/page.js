@@ -8,9 +8,8 @@ const Page = () => {
   const { id } = useParams();
   const [product, setProduct] = useState("");
   const [mainImage, setMainImage] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [selectedSizes, setSelectedSizes] = useState([]);
   const [resError, setResError] = useState("");
   async function getProduct() {
     let result = await postReq(
@@ -22,14 +21,7 @@ const Page = () => {
     setProduct(result.response.data);
     setMainImage(result.response.data.images[0].url);
   }
-  function addToCart(
-    productId,
-    productName,
-    productPrice,
-    quantity,
-    sizes,
-    colors
-  ) {
+  function addToCart(productId, productName, productPrice, quantity) {
     if (quantity <= 0) {
       setResError("Quantity must be at least 1!");
       return;
@@ -47,8 +39,6 @@ const Page = () => {
         name: productName,
         price: productPrice,
         quantity: quantity,
-        sizes: sizes || [], // If sizes is null/undefined, store an empty array
-        colors: colors || [], // If colors is null/undefined, store an empty array
       };
       cart.push(product);
     }
@@ -58,22 +48,6 @@ const Page = () => {
   }
 
   const handleChoiceSubmit = async () => {
-    if (
-      product.colors &&
-      product.colors.length > 0 &&
-      selectedColors.length == 0
-    ) {
-      setResError("Please Select At Least One Color");
-      return;
-    }
-    if (
-      product.sizes &&
-      product.sizes.length > 0 &&
-      selectedSizes.length == 0
-    ) {
-      setResError("Please Select At Least One Size");
-      return;
-    }
     if (quantity == 0) {
       setResError("Please Select At Least One Product");
       return;
@@ -85,46 +59,17 @@ const Page = () => {
       setLoading(true);
 
       let Item = {
-        selectedSizes,
-        selectedColors,
         quantity,
         itemPrice: product.price,
         itemId: product._id,
       };
-      addToCart(
-        Item.itemId,
-        product?.name,
-        Item.itemPrice,
-        Item.quantity,
-        Item.selectedSizes,
-        Item.selectedColors
-      );
+      addToCart(Item.itemId, product?.name, Item.itemPrice, Item.quantity);
       setLoading(false);
     }
   };
   useEffect(() => {
     getProduct();
   }, []);
-  const handleSizeSelection = (size) => {
-    if (selectedSizes.includes(size)) {
-      // Remove the size if it's already selected
-      setSelectedSizes(selectedSizes.filter((s) => s !== size));
-    } else {
-      // Add the size if it's not selected
-      setSelectedSizes([...selectedSizes, size]);
-    }
-  };
-  const [selectedColors, setSelectedColors] = useState([]);
-
-  const handleColorSelection = (color) => {
-    if (selectedColors.includes(color)) {
-      // Remove the size if it's already selected
-      setSelectedColors(selectedColors.filter((s) => s !== color));
-    } else {
-      // Add the size if it's not selected
-      setSelectedColors([...selectedColors, color]);
-    }
-  };
 
   return (
     <>
@@ -182,72 +127,6 @@ const Page = () => {
                   })}
               </h1>
 
-              <div className="">
-                <label className="text-black font-bold">
-                  {Array.isArray(product.sizes) && product.sizes.length > 0
-                    ? "Available Sizes"
-                    : ""}
-                </label>
-              </div>
-              <div className="flex gap-1 mt-3 flex-wrap">
-                {Array.isArray(product.sizes) &&
-                  product.sizes.length > 0 &&
-                  product.sizes.map((item) => {
-                    return (
-                      <label key={item}>
-                        <input
-                          type="checkbox"
-                          name="size"
-                          value={item}
-                          className="peer sr-only"
-                          onChange={() => handleSizeSelection(item)}
-                        />
-                        <p
-                          className={`peer-checked:bg-black  peer-checked:text-white  border border-black px-6 py-2 font-bold ${
-                            selectedSizes.includes(item)
-                              ? "bg-black text-white"
-                              : ""
-                          }`}
-                        >
-                          {item}
-                        </p>
-                      </label>
-                    );
-                  })}
-              </div>
-              <div className="my-3">
-                <label className="text-black font-bold">
-                  {Array.isArray(product.colors) && product.colors.length > 0
-                    ? "Available Colors"
-                    : ""}
-                </label>
-              </div>
-              <div className="flex gap-1 mt-3 flex-wrap">
-                {Array.isArray(product.colors) &&
-                  product.colors.length > 0 &&
-                  product.colors.map((item) => {
-                    return (
-                      <label key={item}>
-                        <input
-                          type="checkbox"
-                          name="size"
-                          value={item}
-                          className="peer sr-only"
-                          onChange={() => handleColorSelection(item)}
-                        />
-                        <p
-                          className={`peer-checked:bg-black  peer-checked:text-white  border border-black px-6 py-2 font-bold ${
-                            selectedColors.includes(item)
-                              ? "bg-black text-white"
-                              : ""
-                          }`}
-                        >
-                          {item}
-                        </p>
-                      </label>
-                    );
-                  })}
-              </div>
               <div className="my-3">
                 <label className="text-black font-bold">
                   {Array.isArray(product.materials) &&

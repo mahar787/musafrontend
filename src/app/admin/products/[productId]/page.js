@@ -60,14 +60,14 @@ const Page = () => {
   useEffect(() => {
     setValue("name", product.product?.name);
     setValue("price", product.product?.price);
-    setValue(
-      "sizes",
-      product.product?.sizes.map((size) => size)
-    );
-    setValue(
-      "colors",
-      product.product?.colors.map((color) => color)
-    );
+    // setValue(
+    //   "sizes",
+    //   product.product?.sizes.map((size) => size)
+    // );
+    // setValue(
+    //   "colors",
+    //   product.product?.colors.map((color) => color)
+    // );
     setValue("youtubeVideo", product.product?.youtubeVideo);
     setValue("materials", product.product?.materials);
     setValue("descriptionPoints", product.product?.descriptionPoints);
@@ -84,8 +84,8 @@ const Page = () => {
       formData.append("productId", productId);
       formData.append("name", data.name);
       formData.append("price", data.price);
-      formData.append("sizes", data.sizes.join(","));
-      formData.append("colors", data.colors.join(","));
+      // formData.append("sizes", data.sizes.join(","));
+      // formData.append("colors", data.colors.join(","));
       formData.append("materials", data.materials);
       formData.append(
         "descriptionPoints",
@@ -181,7 +181,7 @@ const Page = () => {
           required
           type="number"
         />
-        <InputField
+        {/* <InputField
           label="Sizes (Comma Separated)"
           name="sizes"
           register={register}
@@ -194,7 +194,7 @@ const Page = () => {
           register={register}
           errors={errors}
           required
-        />
+        /> */}
         <InputField
           label="Material"
           name="materials"
