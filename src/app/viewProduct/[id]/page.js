@@ -21,7 +21,6 @@ const Page = () => {
     );
     setProduct(result.response.data);
     setMainImage(result.response.data.images[0].url);
-    console.log(result.response.data);
   }
   function addToCart(
     productId,
@@ -156,7 +155,7 @@ const Page = () => {
                           <button
                             key={item._id}
                             type="button"
-                            className="flex-0 aspect-square mb-3 h-20 overflow-hidden  border-2 border-gray-900 text-center"
+                            className="flex-1 aspect-square mb-3 h-20 overflow-hidden  border-2 border-gray-900 text-center"
                             onClick={() => {
                               setMainImage(item.url);
                             }}

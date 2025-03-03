@@ -27,6 +27,11 @@ const MainBanner = () => {
         priority
         className="block md:hidden"
       />
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+        <button className=" text-white px-6 cursor-pointer py-3 font-bold border-4 border-white shadow-md">
+          Shop Now
+        </button>
+      </div>
     </main>
   );
 };

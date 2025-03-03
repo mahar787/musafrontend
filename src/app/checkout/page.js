@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import postReq from "../utilities/postReq";
-import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
 const CheckoutPage = () => {
   const {
@@ -15,10 +14,6 @@ const CheckoutPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState("");
-  const stripePromise = loadStripe(
-    `${process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY}`
-  );
-  console.log(`${process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY}`);
 
   async function getCartItemsFullDetails(cart) {
     let ids = cart.map((item) => item.id);
@@ -41,9 +36,6 @@ const CheckoutPage = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    const stripe = await stripePromise;
-
-    // Create checkout session
     const orderData = {
       ...data,
       paymentMethod: selectedPayment,
@@ -69,8 +61,10 @@ const CheckoutPage = () => {
       router.push("/");
       setLoading(false);
     }
+    if (session.card) {
+      router.push(`/checkout/uploadScreenshot?orderId=${session.id}`);
+    }
     // Redirect user to Stripe Checkout
-    await stripe.redirectToCheckout({ sessionId: session.id });
     setLoading(false);
   };
   return (

@@ -81,7 +81,7 @@ const ProductsPage = () => {
 
       {/* Product Grid */}
       <div
-        className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 ${inter.className}`}
+        className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 ${inter.className}`}
       >
         {Array.isArray(products) &&
           products.length > 0 &&
@@ -89,12 +89,12 @@ const ProductsPage = () => {
             <a
               href={`/viewProduct/${product._id}`}
               key={product._id}
-              className="shadow-md cursor-pointer rounded-lg overflow-hidden transition-transform duration-300 hover:scale-103 hover:shadow-lg"
+              className="shadow-md cursor-pointer overflow-hidden transition-transform duration-300 hover:scale-102 hover:shadow-lg"
             >
               <img
                 src={product.images[0].url}
                 alt={product?.name}
-                className="w-full h-[400px] object-cover"
+                className="w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover"
               />
               <div className="p-4">
                 <h3 className="text-xl font-semibold">{product?.name}</h3>

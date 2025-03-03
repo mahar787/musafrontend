@@ -1,5 +1,7 @@
 import Link from "next/link";
-
+import facebook from "../../../public/facebook.svg";
+import instagram from "../../../public/instagram.svg";
+import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="bg-black text-gray-300 py-10">
@@ -41,6 +43,11 @@ const Footer = () => {
             <h3 className="text-white font-semibold">Policies</h3>
             <ul className="mt-2 space-y-2">
               <li>
+                <a href="/returnPolicy" className="hover:text-white">
+                  Return Policy
+                </a>
+              </li>
+              <li>
                 <a href="#" className="hover:text-white">
                   Free Delivery Nationwide
                 </a>
@@ -64,14 +71,27 @@ const Footer = () => {
             <p className="text-sm mt-2">Get special offers and updates.</p>
 
             <div className="flex space-x-4 mt-4">
-              <a href="#" className="text-gray-400 hover:text-white">
-                <i className="fab fa-facebook-f"></i>
+              <a
+                href="https://www.facebook.com/share/1LYRppo3hp/"
+                className="text-gray-400 hover:text-white"
+              >
+                <Image
+                  height={30}
+                  width={30}
+                  alt="facebook Icon"
+                  src={facebook}
+                />
               </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <i className="fab fa-twitter"></i>
+              <a
+                href="https://www.instagram.com/suitsbymusa/"
+                className="text-gray-400 hover:text-white"
+              >
+                <Image
+                  height={30}
+                  width={30}
+                  alt="instagram Icon"
+                  src={instagram}
+                />
               </a>
             </div>
           </div>
