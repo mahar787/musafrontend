@@ -1,13 +1,20 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import getReq from "../utilities/getReq";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], weight: "200" });
-const RandomCollection = async () => {
-  let result = await getReq(
-    `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/getRandomCollection`
-  );
-  const data = result.response.data;
+const RandomCollection = () => {
+  const [data, setData] = useState([]);
+  async function getRandomCollectionData() {
+    let result = await getReq(
+      `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/getRandomCollection`
+    );
+    setData(result.response.data);
+  }
+  useEffect(() => {
+    getRandomCollectionData();
+  }, []);
 
   return (
     <>
@@ -17,7 +24,7 @@ const RandomCollection = async () => {
           data.map((item) => {
             return (
               <section
-                className="py-5 border-t-2 border-gray-400"
+                className="py-5 border-t-2 border-gray-500"
                 key={item.collection?._id}
               >
                 <h1 className="text-xl sm:text-2xl md:text-3xl my-5 font-bold">

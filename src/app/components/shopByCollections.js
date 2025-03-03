@@ -1,11 +1,21 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import getReq from "../utilities/getReq";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], weight: "500" });
 
-const ShopByCollections = async () => {
-  let collections = await getCollections();
+const ShopByCollections = () => {
+  const [collections, setCollections] = useState([]);
+  async function getCollections() {
+    let result = await getReq(
+      `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/getCollections`
+    );
+    setCollections(result.response.data);
+  }
+  useEffect(() => {
+    getCollections();
+  }, []);
   return (
     <main className="h-auto border-t-2 border-gray-300">
       <h1 className={`text-2xl font-bold mx-5 my-10 ${inter.className}`}>
@@ -41,10 +51,3 @@ const ShopByCollections = async () => {
 };
 
 export default ShopByCollections;
-
-async function getCollections() {
-  let result = await getReq(
-    `${process.env.NEXT_PUBLIC_DOMAIN_URL}/api/getCollections`
-  );
-  return result.response.data;
-}
