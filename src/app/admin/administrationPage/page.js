@@ -10,7 +10,7 @@ const Page = () => {
       <Link className="p-2 bg-black text-white" href={"/admin/addProduct"}>
         Add Product
       </Link>
-      <Link className="p-2 bg-black text-white" href={"/admin/addProduct"}>
+      <Link className="p-2 bg-black text-white" href={"/admin/getPayments"}>
         Payments
       </Link>
       <Link className="p-2 bg-black text-white" href={"/admin/orders"}>
