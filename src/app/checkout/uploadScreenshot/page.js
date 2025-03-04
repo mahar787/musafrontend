@@ -43,13 +43,15 @@ function ImageUploadFormContent() {
     const data = await res.json();
     setLoading(false);
     setApiResponse(data.message);
-    window.alert("Take Screenshot Of Your Order Id: ", orderId);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
       <Alert message={apiResponse} />
       <div className="p-6 rounded-xl shadow-xl w-full max-w-md">
+        <h2 className="text-lg font-bold mb-2 text-center">
+          Your Order Id is : {orderId}
+        </h2>
         <h2 className="text-lg font-bold mb-2 text-center">
           Account Holder Name : {accountHolderName}
         </h2>
