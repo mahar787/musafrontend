@@ -110,8 +110,6 @@ const Page = () => {
         <thead>
           <tr className="bg-black text-white">
             <th className="border border-gray-600 p-2">Name</th>
-            <th className="border border-gray-600 p-2">Colors</th>
-            <th className="border border-gray-600 p-2">Sizes</th>
             <th className="border border-gray-600 p-2">Quantity</th>
             <th className="border border-gray-600 p-2">Total</th>
             <th className="border border-gray-600 p-2">Date</th>
@@ -126,16 +124,7 @@ const Page = () => {
                   className="text-center cursor-pointer hover:bg-gray-200"
                 >
                   <td className="border border-gray-600 p-2">{item?.name}</td>
-                  <td className="border border-gray-600 p-2">
-                    {item.selectedColors.map((color, i) => (
-                      <span key={i}>{color},&nbsp;</span>
-                    ))}
-                  </td>
-                  <td className="border border-gray-600 p-2">
-                    {item.selectedSizes.map((size, i) => (
-                      <span key={i}>{size}, &nbsp;</span>
-                    ))}
-                  </td>
+
                   <td className="border border-gray-600 p-2">
                     {item.quantity}
                   </td>
